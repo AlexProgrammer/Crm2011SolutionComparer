@@ -1,0 +1,5 @@
+C:\Users\Alex\documents\visual studio 2010\Projects\CrmSolutionCompare\XmlSolutionParser\bin\Debug\XmlSolutionParser.dll
+C:\Users\Alex\documents\visual studio 2010\Projects\CrmSolutionCompare\XmlSolutionParser\bin\Debug\XmlSolutionParser.pdb
+C:\Users\Alex\documents\visual studio 2010\Projects\CrmSolutionCompare\XmlSolutionParser\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Alex\documents\visual studio 2010\Projects\CrmSolutionCompare\XmlSolutionParser\obj\Debug\XmlSolutionParser.dll
+C:\Users\Alex\documents\visual studio 2010\Projects\CrmSolutionCompare\XmlSolutionParser\obj\Debug\XmlSolutionParser.pdb
