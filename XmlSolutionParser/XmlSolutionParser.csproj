@@ -41,17 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrmSolution.cs" />
+    <Compile Include="CrmSolution.ImportExportXmlParser.cs" />
     <Compile Include="CrmSolution.SolutionXmlParser.cs" />
     <Compile Include="Objects\ContentType.cs" />
-    <Compile Include="Objects\DependentDependency.cs" />
+    <Compile Include="Objects\Solution\DependentDependency.cs" />
     <Compile Include="Objects\Label.cs" />
-    <Compile Include="Objects\MissingDependency.cs" />
-    <Compile Include="Objects\PublisherAddress.cs" />
-    <Compile Include="Objects\PublisherInfo.cs" />
-    <Compile Include="Objects\RequiredDependency.cs" />
-    <Compile Include="Objects\RootComponent.cs" />
-    <Compile Include="Objects\RootComponentType.cs" />
-    <Compile Include="Objects\WebResource.cs" />
+    <Compile Include="Objects\Solution\MissingDependency.cs" />
+    <Compile Include="Objects\Solution\PublisherAddress.cs" />
+    <Compile Include="Objects\Solution\PublisherInfo.cs" />
+    <Compile Include="Objects\Solution\RequiredDependency.cs" />
+    <Compile Include="Objects\Solution\RootComponent.cs" />
+    <Compile Include="Objects\Solution\RootComponentType.cs" />
+    <Compile Include="Objects\Solution\WebResource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZipLib\Checksums\Adler32.cs" />
     <Compile Include="ZipLib\Checksums\CRC32.cs" />
@@ -95,7 +96,9 @@
     <Compile Include="ZipLib\Zip\ZipNameTransform.cs" />
     <Compile Include="ZipLib\Zip\ZipOutputStream.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Objects\Import\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
