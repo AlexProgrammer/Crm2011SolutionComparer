@@ -10,7 +10,13 @@ namespace SolutionParserTestApp
     {
         public void Run(string filePath)
         {
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             var solution = CrmSolution.Open(filePath);
+            Console.WriteLine(solution.ToString());
+            Console.WriteLine(solution.Publisher.ToString());
+            Console.WriteLine(string.Format("Number of components: {0}", solution.Components.Count));
+            Console.WriteLine(string.Format("Number of missing dependencies: {0}", solution.MissingDependencies.Count));
             Console.ReadKey();
         }
     }

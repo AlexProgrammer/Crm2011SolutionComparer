@@ -15,7 +15,7 @@ namespace Alex.Net.Crm.SolutionCompare.Parser.Objects
     {
         public ContentTypes Type { get; set; }
         public string Extension { get; set; }
-        public string ContentType { get; set; }
+        public string ContentStreamType { get; set; }
         public string PartName { get; set; }
     }
 }

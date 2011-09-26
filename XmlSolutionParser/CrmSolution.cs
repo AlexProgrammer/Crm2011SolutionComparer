@@ -7,10 +7,11 @@ using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using System.Xml;
 using Alex.Net.Crm.SolutionCompare.Parser.Objects;
+using System.Xml.Linq;
 
 namespace Alex.Net.Crm.SolutionCompare.Parser
 {
-    public class CrmSolution
+    public partial class CrmSolution
     {
         public string CrmVersion { get; set; }
         public string CrmMinimumVersion { get; set; }
@@ -20,25 +21,18 @@ namespace Alex.Net.Crm.SolutionCompare.Parser
         public bool IsManaged { get; private set; }
         public string Version { get; set; }
         public string UniqueName { get; set; }
-        public LocalizedLabel Name { get; set; }
+        public Label Name { get; set; }
 
         public PublisherInfo Publisher { get; private set; }
 
         public List<RootComponent> Components { get; private set; }
-
+        public List<Dependency> MissingDependencies { get; private set; }
         
         private const string customizationsXmlFilename = "customizations.xml";
         private const string contentTypesXmlFilename = "[Content_Types].xml";
         private const string solutionXmlFilename = "solution.xml";
 
         private const int bufferSize = 4096;
-
-        private CrmSolution()
-        {
-            this.Publisher = new PublisherInfo();
-            this.Components = new List<RootComponent>();
-
-        }
 
         public static CrmSolution Open(string crmSolutionFile)
         {
@@ -52,23 +46,26 @@ namespace Alex.Net.Crm.SolutionCompare.Parser
         {
             CrmSolution solution = new CrmSolution();
             ZipFile zipFile = new ZipFile(crmSolutionStream);
-            var solutionXmlDocument = solution.GetXmlDocument(zipFile, solutionXmlFilename);
-            var contentTypesXmlDocument = solution.GetXmlDocument(zipFile, contentTypesXmlFilename);
-            var customizationsXmlDocument = solution.GetXmlDocument(zipFile, solutionXmlFilename);
+            var solutionXmlDocument = solution.GetXDocument(zipFile, solutionXmlFilename);
+            var contentTypesXmlDocument = solution.GetXDocument(zipFile, contentTypesXmlFilename);
+            var customizationsXmlDocument = solution.GetXDocument(zipFile, solutionXmlFilename);
+
+            ParseSolutionXml(solution, solutionXmlDocument);
+
             return solution;
         }
 
-        private XmlDocument GetXmlDocument(ZipFile zipFile, string xmlFileName)
+        private XDocument GetXDocument(ZipFile zipFile, string xmlFileName)
         {
             var targetEntry = zipFile.GetEntry(xmlFileName);
             if (targetEntry != null)
             {
-                var resultDocument = new XmlDocument();
+                XDocument resultDocument = null;
                 //using (var memoryStream = new MemoryStream())
                 //{
                     using (var zipStream = zipFile.GetInputStream(targetEntry))
                     {
-                        resultDocument.Load(zipStream);
+                        resultDocument = XDocument.Load(zipStream);
                     }
                     
                 //}
@@ -78,6 +75,11 @@ namespace Alex.Net.Crm.SolutionCompare.Parser
             {
                 return null;
             }
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0} ({1}) v {2}", this.Name.UserLocalizedLabel.Value, this.UniqueName, this.Version);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Alex.Net.Crm.SolutionCompare.Parser.Objects
         public int AddressNumber { get; set; }
         public int AddressTypeCode { get; set; }
         public string City { get; set; }
+        public string County { get; set; }
         public string Country { get; set; }
         public string Fax { get; set; }
 

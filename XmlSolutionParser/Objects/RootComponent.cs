@@ -7,7 +7,7 @@ namespace Alex.Net.Crm.SolutionCompare.Parser.Objects
 {
     public class RootComponent
     {
-        public RootComponentType Type { get; set; }
+        public ComponentType Type { get; set; }
         public string SchemaName { get; set; }
         public Guid Id { get; set; }
         public Guid ParentId { get; set; }
@@ -16,7 +16,7 @@ namespace Alex.Net.Crm.SolutionCompare.Parser.Objects
         {
             this.Id = Guid.Empty;
             this.ParentId = Guid.Empty;
-            this.Type = RootComponentType.Undefined;
+            this.Type = ComponentType.Undefined;
         }
     }
 }

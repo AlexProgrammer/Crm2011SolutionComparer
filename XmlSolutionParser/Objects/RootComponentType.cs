@@ -8,7 +8,7 @@ namespace Alex.Net.Crm.SolutionCompare.Parser.Objects
 
     /*
 Application Ribbons (RibbonCustomization) 	
-1   Entity (Entity) 	
+1   Entity (Entity) 
 Report (Report) 
 Article Template (KBArticleTemplate) 	
 Field Security Profile (FieldSecurityProfile) 	
@@ -25,8 +25,9 @@ Dashboard or Entity Form (SystemForm)
 E-mail Template (EmailTemplate) 	
 29  Process (Workflow) 	
 61  Web Resource (WebResource)
+26  View (View)
      */
-    public enum RootComponentType
+    public enum ComponentType
     {
         Undefined = -1,
         Entity = 1,
@@ -44,7 +45,8 @@ E-mail Template (EmailTemplate)
         MailMergeTemplate,
         ContractTemplate,
         ServiceEndpoint,
-        SystemForm,
-        EmailTemplate
+        SystemForm = 60,
+        EmailTemplate,
+        View = 26
     }
 }

@@ -41,10 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrmSolution.cs" />
+    <Compile Include="CrmSolution.SolutionXmlParser.cs" />
     <Compile Include="Objects\ContentType.cs" />
-    <Compile Include="Objects\LocalizedLabel.cs" />
+    <Compile Include="Objects\DependentDependency.cs" />
+    <Compile Include="Objects\Label.cs" />
+    <Compile Include="Objects\MissingDependency.cs" />
     <Compile Include="Objects\PublisherAddress.cs" />
     <Compile Include="Objects\PublisherInfo.cs" />
+    <Compile Include="Objects\RequiredDependency.cs" />
     <Compile Include="Objects\RootComponent.cs" />
     <Compile Include="Objects\RootComponentType.cs" />
     <Compile Include="Objects\WebResource.cs" />
