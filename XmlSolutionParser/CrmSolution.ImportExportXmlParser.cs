@@ -5,7 +5,4 @@ using System.Text;
 
 namespace Alex.Net.Crm.SolutionCompare.Parser
 {
-    class CrmSolution
-    {
-    }
 }

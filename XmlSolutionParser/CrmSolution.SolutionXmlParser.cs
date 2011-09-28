@@ -11,7 +11,6 @@ namespace Alex.Net.Crm.SolutionCompare.Parser
 {
     public partial class CrmSolution
     {
-        protected static XNamespace xsiNameSpace = "http://www.w3.org/2001/XMLSchema-instance";
 
         protected static readonly object solutionComponentLock;
 
@@ -20,7 +19,7 @@ namespace Alex.Net.Crm.SolutionCompare.Parser
             ParseSolutionRootElement(solution, solutionDocument);
             var manifestElement = solutionDocument.Element("ImportExportXml").Element("SolutionManifest");
             solution.UniqueName = manifestElement.Element("UniqueName").Value;
-            solution.Name = ParseLocalizedLabelElement(manifestElement.Element("LocalizedNames"), solution.DefaultLanguageCode);
+            solution.Name = Util.ParseLocalizedLabelElement(manifestElement.Element("LocalizedNames"), solution.DefaultLanguageCode);
             // solution.Description ??
             solution.Version = manifestElement.Element("Version").Value;
             solution.IsManaged = manifestElement.Element("Managed").Value.Equals("1") ? true : false;
@@ -44,10 +43,10 @@ namespace Alex.Net.Crm.SolutionCompare.Parser
         {
             var publisherInfo = new PublisherInfo();
             publisherInfo.UniqueName = publisherElement.Element("UniqueName").Value;
-            publisherInfo.Name = ParseLocalizedLabelElement(publisherElement.Element("LocalizedNames"), defaultLanguageCode);
-            publisherInfo.Description = ParseLocalizedLabelElement(publisherElement.Element("Descriptions"), defaultLanguageCode);
-            publisherInfo.EmailAddress = GetElementValueOrNull(publisherElement.Element("EMailAddress"));
-            publisherInfo.SupportSite = GetElementValueOrNull(publisherElement.Element("SupportingWebsiteUrl"));
+            publisherInfo.Name = Util.ParseLocalizedLabelElement(publisherElement.Element("LocalizedNames"), defaultLanguageCode);
+            publisherInfo.Description = Util.ParseLocalizedLabelElement(publisherElement.Element("Descriptions"), defaultLanguageCode);
+            publisherInfo.EmailAddress = Util.GetElementValueOrNull(publisherElement.Element("EMailAddress"));
+            publisherInfo.SupportSite = Util.GetElementValueOrNull(publisherElement.Element("SupportingWebsiteUrl"));
             publisherInfo.CustomizationPrefix = publisherElement.Element("CustomizationPrefix").Value;
             int customizationOptionValue;
             publisherInfo.CustomizationOptionValuePrefix = int.TryParse(publisherElement.Element("CustomizationOptionValuePrefix").Value,
@@ -81,34 +80,34 @@ namespace Alex.Net.Crm.SolutionCompare.Parser
             publisherAddress.AddressNumber = int.TryParse(addressElement.Element("AddressNumber").Value, out addressNumber) ? addressNumber : 0;
             publisherAddress.AddressTypeCode = int.TryParse(addressElement.Element("AddressTypeCode").Value, out addressTypeCode) ? addressTypeCode : 0;
 
-            publisherAddress.City = GetElementValueOrNull(addressElement.Element("City"));
-            publisherAddress.County = GetElementValueOrNull(addressElement.Element("County"));
-            publisherAddress.Country = GetElementValueOrNull(addressElement.Element("Country"));
-            publisherAddress.Fax = GetElementValueOrNull(addressElement.Element("Fax"));
+            publisherAddress.City = Util.GetElementValueOrNull(addressElement.Element("City"));
+            publisherAddress.County = Util.GetElementValueOrNull(addressElement.Element("County"));
+            publisherAddress.Country = Util.GetElementValueOrNull(addressElement.Element("Country"));
+            publisherAddress.Fax = Util.GetElementValueOrNull(addressElement.Element("Fax"));
 
-            publisherAddress.FreightTermsCode = int.TryParse(GetElementValueOrNull(addressElement.Element("FreightTermsCode")), out freightTermsCode) ? freightTermsCode : 0;
-            publisherAddress.ImportSequenceNumber = int.TryParse(GetElementValueOrNull(addressElement.Element("ImportSequenceNumber")), out importSequenceNumber) ? importSequenceNumber : 0;
+            publisherAddress.FreightTermsCode = int.TryParse(Util.GetElementValueOrNull(addressElement.Element("FreightTermsCode")), out freightTermsCode) ? freightTermsCode : 0;
+            publisherAddress.ImportSequenceNumber = int.TryParse(Util.GetElementValueOrNull(addressElement.Element("ImportSequenceNumber")), out importSequenceNumber) ? importSequenceNumber : 0;
 
-            publisherAddress.Latitude = GetElementValueOrNull(addressElement.Element("Latitude"));
-            publisherAddress.Line1 = GetElementValueOrNull(addressElement.Element("Line1"));
-            publisherAddress.Line2 = GetElementValueOrNull(addressElement.Element("Line2"));
-            publisherAddress.Line3 = GetElementValueOrNull(addressElement.Element("Line3"));
-            publisherAddress.Longitude = GetElementValueOrNull(addressElement.Element("Longitude"));
-            publisherAddress.Name = GetElementValueOrNull(addressElement.Element("Name"));
-            publisherAddress.PostalCode = GetElementValueOrNull(addressElement.Element("PostalCode"));
-            publisherAddress.PostOfficeBox = GetElementValueOrNull(addressElement.Element("PostOfficeBox"));
-            publisherAddress.PrimaryContactName = GetElementValueOrNull(addressElement.Element("PrimaryContactName"));
+            publisherAddress.Latitude = Util.GetElementValueOrNull(addressElement.Element("Latitude"));
+            publisherAddress.Line1 = Util.GetElementValueOrNull(addressElement.Element("Line1"));
+            publisherAddress.Line2 = Util.GetElementValueOrNull(addressElement.Element("Line2"));
+            publisherAddress.Line3 = Util.GetElementValueOrNull(addressElement.Element("Line3"));
+            publisherAddress.Longitude = Util.GetElementValueOrNull(addressElement.Element("Longitude"));
+            publisherAddress.Name = Util.GetElementValueOrNull(addressElement.Element("Name"));
+            publisherAddress.PostalCode = Util.GetElementValueOrNull(addressElement.Element("PostalCode"));
+            publisherAddress.PostOfficeBox = Util.GetElementValueOrNull(addressElement.Element("PostOfficeBox"));
+            publisherAddress.PrimaryContactName = Util.GetElementValueOrNull(addressElement.Element("PrimaryContactName"));
 
-            publisherAddress.ShippingMethodCode = int.TryParse(GetElementValueOrNull(addressElement.Element("ShippingMethodCode")), out shippingMethodCode) ? shippingMethodCode : 0;
+            publisherAddress.ShippingMethodCode = int.TryParse(Util.GetElementValueOrNull(addressElement.Element("ShippingMethodCode")), out shippingMethodCode) ? shippingMethodCode : 0;
 
-            publisherAddress.StateOrProvince = GetElementValueOrNull(addressElement.Element("StateOrProvince"));
-            publisherAddress.Telephone1 = GetElementValueOrNull(addressElement.Element("Telephone1"));
-            publisherAddress.Telephone2 = GetElementValueOrNull(addressElement.Element("Telephone2"));
-            publisherAddress.Telephone3 = GetElementValueOrNull(addressElement.Element("Telephone3"));
-            publisherAddress.TimeZoneRuleVersionNumber = GetElementValueOrNull(addressElement.Element("TimeZoneRuleVersionNumber"));
-            publisherAddress.UPSZone = GetElementValueOrNull(addressElement.Element("UPSZone"));
-            publisherAddress.UTCOffset = GetElementValueOrNull(addressElement.Element("UTCOffset"));
-            publisherAddress.UTCConversionTimeZoneCode = GetElementValueOrNull(addressElement.Element("UTCConversionTimeZoneCode"));
+            publisherAddress.StateOrProvince = Util.GetElementValueOrNull(addressElement.Element("StateOrProvince"));
+            publisherAddress.Telephone1 = Util.GetElementValueOrNull(addressElement.Element("Telephone1"));
+            publisherAddress.Telephone2 = Util.GetElementValueOrNull(addressElement.Element("Telephone2"));
+            publisherAddress.Telephone3 = Util.GetElementValueOrNull(addressElement.Element("Telephone3"));
+            publisherAddress.TimeZoneRuleVersionNumber = Util.GetElementValueOrNull(addressElement.Element("TimeZoneRuleVersionNumber"));
+            publisherAddress.UPSZone = Util.GetElementValueOrNull(addressElement.Element("UPSZone"));
+            publisherAddress.UTCOffset = Util.GetElementValueOrNull(addressElement.Element("UTCOffset"));
+            publisherAddress.UTCConversionTimeZoneCode = Util.GetElementValueOrNull(addressElement.Element("UTCConversionTimeZoneCode"));
 
             return publisherAddress;
         }
@@ -143,17 +142,25 @@ namespace Alex.Net.Crm.SolutionCompare.Parser
                 var dependency = new Dependency();
                 {
                     var requiredElement = dependencyElement.Element("Required");
-                    var attributeTypeValue = int.Parse(requiredElement.Attribute("type").Value);
+                    var requiredAttributeTypeValue = int.Parse(requiredElement.Attribute("type").Value);
+                    var dependentElement = dependencyElement.Element("Dependent");
+                    var dependentAttributeTypeValue = int.Parse(dependentElement.Attribute("type").Value);
 
                     dependency.Required.Id = new Guid(requiredElement.Attribute("id").Value);
                     dependency.Required.Key = int.Parse(requiredElement.Attribute("key").Value);
-                    dependency.Required.Type = Enum.IsDefined(typeof(ComponentType), attributeTypeValue) ? (ComponentType)attributeTypeValue : ComponentType.Undefined;
-
+                    dependency.Required.Type = Enum.IsDefined(typeof(ComponentType), requiredAttributeTypeValue) ? 
+                        (ComponentType)requiredAttributeTypeValue : ComponentType.Undefined;
                     dependency.Required.DisplayName = requiredElement.Attribute("displayName").Value;
                     dependency.Required.SchemaName = requiredElement.Attribute("schemaName").Value;
                     dependency.Required.ParentDisplayName = requiredElement.Attribute("parentDisplayName").Value;
                     dependency.Required.ParentSchemaName = requiredElement.Attribute("parentSchemaName").Value;
                     dependency.Required.Solution = requiredElement.Attribute("solution").Value;
+
+                    dependency.Dependent.Id = new Guid(dependentElement.Attribute("id").Value);
+                    dependency.Dependent.Key = int.Parse(dependentElement.Attribute("key").Value);
+                    dependency.Dependent.Type = Enum.IsDefined(typeof(ComponentType), dependentAttributeTypeValue) ? 
+                        (ComponentType)dependentAttributeTypeValue : ComponentType.Undefined;
+                    dependency.Dependent.ParentDisplayName = dependentElement.Attribute("parentDisplayName").Value;
                 }
 
                 missingDependencies.Add(dependency);
@@ -162,22 +169,5 @@ namespace Alex.Net.Crm.SolutionCompare.Parser
         }
         #endregion
 
-        protected static string GetElementValueOrNull(XElement element)
-        {
-            return element.Attribute(xsiNameSpace + "nil") != null && element.Attribute(xsiNameSpace + "nil").Value.Equals("true") ? null : element.Value;
-        }
-
-        protected static Label ParseLocalizedLabelElement(XElement localizedElement, int defaultLanguageCode)
-        {
-            Label label = new Label(defaultLanguageCode);
-            label.AddLocalizedLabels(
-                from e in localizedElement.Elements()
-                select new LocalizedLabel()
-                {
-                    Value = e.Attribute("description").Value,
-                    LanguageCode = int.Parse(e.Attribute("languagecode").Value)
-                });
-            return label;
-        }
     }
 }

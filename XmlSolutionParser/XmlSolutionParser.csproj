@@ -43,7 +43,9 @@
     <Compile Include="CrmSolution.cs" />
     <Compile Include="CrmSolution.ImportExportXmlParser.cs" />
     <Compile Include="CrmSolution.SolutionXmlParser.cs" />
+    <Compile Include="Customizations.cs" />
     <Compile Include="Objects\ContentType.cs" />
+    <Compile Include="Objects\Entity.cs" />
     <Compile Include="Objects\Solution\DependentDependency.cs" />
     <Compile Include="Objects\Label.cs" />
     <Compile Include="Objects\Solution\MissingDependency.cs" />
@@ -54,6 +56,7 @@
     <Compile Include="Objects\Solution\RootComponentType.cs" />
     <Compile Include="Objects\Solution\WebResource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
     <Compile Include="ZipLib\Checksums\Adler32.cs" />
     <Compile Include="ZipLib\Checksums\CRC32.cs" />
     <Compile Include="ZipLib\Checksums\IChecksum.cs" />
@@ -97,7 +100,7 @@
     <Compile Include="ZipLib\Zip\ZipOutputStream.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Objects\Import\" />
+    <Folder Include="Objects\Customizations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
