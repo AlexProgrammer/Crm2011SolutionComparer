@@ -11,12 +11,6 @@ namespace SolutionParserTestApp
     {
         static void Main(string[] args)
         {
-            var document = XDocument.Load(File.OpenRead(@"C:\Users\Alex\Documents\Visual Studio 2010\Projects\CrmSolutionCompare\SolutionParserTestApp\bin\Debug\BaseDev_0_9_10_0\customizations.xml"));
-            var entities = document.Element("ImportExportXml").Element("Entities").Elements("Entity");
-
-            var result = from e in entities
-                         where e.Element("EntityInfo") == null
-                             select e.Element("Name").Value;
             new SolutionParseRunner().Run("BaseDev_0_9_10_0.zip");
         }
     }

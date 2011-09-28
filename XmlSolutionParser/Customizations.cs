@@ -29,13 +29,22 @@ namespace Alex.Net.Crm.SolutionCompare.Parser
                 e.LogicalName = entityElement.Element("Name").Value;
                 e.ObjectTypeCode = int.Parse(entityElement.Element("ObjectTypeCode").Value);
 
-                XElement entityInfo = entityElement.Element("EntityInfo").Element("entity");
-                e.Name = Util.ParseLocalizedLabelElement(entityInfo.Element("LocalizedNames"), defaultLanguageCode);
-                e.CollectionName = Util.ParseLocalizedLabelElement(entityInfo.Element("LocalizedCollectionNames"), defaultLanguageCode);
-                e.Description = Util.ParseLocalizedLabelElement(entityInfo.Element("Descriptions"), defaultLanguageCode);
+                if (entityElement.Element("EntityInfo") != null)
+                {
+                    ParseEntityInfo(ref e, entityElement.Element("EntityInfo"), defaultLanguageCode);
+                }
                 
             }
             return entityList;
+        }
+
+        private static void ParseEntityInfo(ref Entity e, XElement entityInfoElement, int defaultLanguageCode)
+        {
+            XElement entityInfo = entityInfoElement.Element("entity");
+
+            e.Name = Util.ParseLocalizedLabelElement(entityInfo.Element("LocalizedNames"), defaultLanguageCode);
+            e.CollectionName = Util.ParseLocalizedLabelElement(entityInfo.Element("LocalizedCollectionNames"), defaultLanguageCode);
+            e.Description = Util.ParseLocalizedLabelElement(entityInfo.Element("Descriptions"), defaultLanguageCode);
         }
 
         private Customizations()

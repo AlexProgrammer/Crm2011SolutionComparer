@@ -44,8 +44,11 @@
     <Compile Include="CrmSolution.ImportExportXmlParser.cs" />
     <Compile Include="CrmSolution.SolutionXmlParser.cs" />
     <Compile Include="Customizations.cs" />
+    <Compile Include="Objects\Attribute.cs" />
+    <Compile Include="Objects\AttributeType.cs" />
     <Compile Include="Objects\ContentType.cs" />
     <Compile Include="Objects\Entity.cs" />
+    <Compile Include="Objects\RequiredLevel.cs" />
     <Compile Include="Objects\Solution\DependentDependency.cs" />
     <Compile Include="Objects\Label.cs" />
     <Compile Include="Objects\Solution\MissingDependency.cs" />
