@@ -7,16 +7,6 @@ namespace Alex.Net.Crm.SolutionCompare.Parser.Objects
 {
     public class Attribute
     {
-        /*
-OptionSetName
-MinValue
-MaxValue
-Accuracy
-AccuracySource
-CalculationOf
-ReferencedEntityObjectTypeCode
-YomiOf
-        */
         public string PhysicalName { get; set; }
         public Label DisplayName { get; set; }
         public Label Description { get; set; }
@@ -44,6 +34,13 @@ YomiOf
         public int Length { get; set; }
         public List<LookupType> LookupTypes { get; set; }
         public LookupStyle LookupStyle { get; set; }
-
+        public string OptionSetName { get; set; }
+        public int MinValue { get; set; }
+        public int MaxValue { get; set; }
+        public int Accuracy { get; set; }
+        public int AccuracySource { get; set; }
+        public string CalculationOf { get; set; }
+        public int ReferencedObjectTypeCode { get; set; }
+        public string YomiOf { get; set; }
     }
 }
