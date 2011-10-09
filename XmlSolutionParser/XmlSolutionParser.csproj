@@ -45,9 +45,17 @@
     <Compile Include="CrmSolution.SolutionXmlParser.cs" />
     <Compile Include="Customizations.cs" />
     <Compile Include="Objects\Attribute.cs" />
+    <Compile Include="Objects\AttributeFormat.cs" />
+    <Compile Include="Objects\LookupStyle.cs" />
+    <Compile Include="Objects\LookupType.cs" />
+    <Compile Include="Objects\Option.cs" />
+    <Compile Include="Objects\OptionSet.cs" />
     <Compile Include="Objects\AttributeType.cs" />
     <Compile Include="Objects\ContentType.cs" />
+    <Compile Include="Objects\AttributeDisplayMask.cs" />
     <Compile Include="Objects\Entity.cs" />
+    <Compile Include="Objects\ImeMode.cs" />
+    <Compile Include="Objects\OptionSetType.cs" />
     <Compile Include="Objects\RequiredLevel.cs" />
     <Compile Include="Objects\Solution\DependentDependency.cs" />
     <Compile Include="Objects\Label.cs" />
